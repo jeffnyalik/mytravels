@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import datetime
+from datetime import timedelta
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -74,6 +76,27 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 AUTH_USER_MODEL = 'api.CustomUser'
+REST_FRAMEWORK = {
+    'NON_FIELD_ERRORS_KEY': 'error',
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'PAGE_SIZE': 5,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+       'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    
+
+    'EXCEPTION_HANDLER': 'authentication.custom_exception.custom_exception_handler',
+
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=365),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=365),
+}
+
 
 
 # Database
