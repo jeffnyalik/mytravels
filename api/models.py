@@ -61,3 +61,15 @@ class Supplier(CustomUser):
 
     def __str__(self) -> str:
         return self.name
+    
+class Customer(CustomUser):
+    name = models.CharField(max_length=100,blank=True, null=True)
+    phone_number = models.CharField(blank=True, null=True,max_length=20)
+    address = models.CharField(blank=True, null=True, max_length=200)
+    is_customer = models.BooleanField(default=False, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Customers"
+
+    def __str__(self) -> str:
+        return self.name
