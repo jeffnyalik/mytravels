@@ -1,4 +1,6 @@
 from django.db import models
+from hotels.hotel_model import *
+from flights.flight_model import *
 
 from django.contrib.auth.models import(
     AbstractBaseUser, 

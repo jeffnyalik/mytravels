@@ -6,6 +6,7 @@ from serializers.supplier_serializer import SupplierSerializer
 from serializers.customer_serializer import CustomerSerializer
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
+from custom_permissions.permissions import IsCustomer
 
 class SupplierRegistrationView(APIView):
     def post(self, request, format=None):
