@@ -37,6 +37,9 @@ class Hotel(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2,blank=True, null=True)
     image = models.ImageField(upload_to=hotel_image_path)
 
+    def __str__(self) -> str:
+        return self.hotel_name
+
     class Meta:
         app_label = "api"
         verbose_name_plural = "Hotels"
@@ -57,4 +60,4 @@ class Room(models.Model):
         verbose_name_plural = "Rooms"
 
     def __str__(self) -> str:
-        return f"Room {self.room_number} at {self.hotel.name}"
+        return f"Room {self.room_number} at {self.hotel.hotel_name}"

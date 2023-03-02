@@ -88,7 +88,7 @@ REST_FRAMEWORK = {
     ),
     
 
-    'EXCEPTION_HANDLER': 'authentication.custom_exception.custom_exception_handler',
+    # 'EXCEPTION_HANDLER': 'authentication.custom_exception.custom_exception_handler',
 
 }
 
