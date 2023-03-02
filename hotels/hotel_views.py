@@ -1,11 +1,12 @@
 from rest_framework import generics
 from hotels.hotel_model import *
 from serializers.hotel_serializer import *
+from serializers.roomtype_serializer import *
 from rest_framework.permissions import IsAuthenticated
 from custom_permissions.permissions import IsSupplier, IsCustomer
 
 class HotelView(generics.ListCreateAPIView):
-    permission_classes = [IsAuthenticated,IsSupplier]
+    # permission_classes = [IsAuthenticated,IsSupplier]
     queryset = Hotel.objects.all()
     serializer_class = HotelSerializer
 
@@ -21,3 +22,12 @@ class RoomDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
 
+
+class RoomTypeView(generics.ListCreateAPIView):
+    queryset = RoomType.objects.all()
+    serializer_class = RoomTypeSerializer
+
+
+class RoomTypeDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = RoomType.objects.all()
+    serializer_class = RoomTypeSerializer
