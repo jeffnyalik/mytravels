@@ -3,6 +3,7 @@ from django.urls import path
 from auths import auth_views
 from hotels import hotel_views
 from flights import flight_views
+from bookings import booking_views
 
 urlpatterns = [
     # path('', views.index, name="Index page"),
@@ -22,4 +23,8 @@ urlpatterns = [
     #Flights path
     path('flights/', flight_views.FlightView.as_view(), name='flights-list'),
     path('flights/<int:pk>/', flight_views.FlightDetailView.as_view(), name='flights-detail'),
+
+    #bookings path
+    path('hotels/<int:hotel_id>/rooms/<int:room_id>/book/', booking_views.BookingApiView.as_view(), name='bookings'),
+
 ]

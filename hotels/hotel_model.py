@@ -44,6 +44,17 @@ class Hotel(models.Model):
         app_label = "api"
         verbose_name_plural = "Hotels"
 
+class Percentage(models.Model):
+    value = models.DecimalField(max_digits=5, decimal_places=2)
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, related_name="percentages", blank=True, null=True)
+
+    class Meta:
+        app_label = "api"
+        verbose_name_plural = "Percentages"
+    
+    def __str__(self) -> str:
+        return self.value
+
 
 class Room(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, related_name="rooms", blank=True, null=True)
