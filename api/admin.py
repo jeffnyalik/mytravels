@@ -11,7 +11,7 @@ class CustomerAdmin(admin.ModelAdmin):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('user', 'room', 'check_in', 'check_out', 'deposit_paid', 'paid_amount')
+    list_display = ('user', 'room', 'check_in', 'check_out', 'deposit_paid', 'paid_amount', 'balance')
 
 @admin.register(RoomType)
 class RoomTypeAdmin(admin.ModelAdmin):
@@ -23,6 +23,6 @@ class HotelAdmin(admin.ModelAdmin):
 
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):
-    list_display = ('room_number', 'hotel', 'room_type', 'price')
+    list_display = ('room_number', 'hotel', 'room_type', 'price', 'is_booked')
 
 admin.site.register(Customer, SupplierAdmin)

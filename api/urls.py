@@ -25,6 +25,7 @@ urlpatterns = [
     path('flights/<int:pk>/', flight_views.FlightDetailView.as_view(), name='flights-detail'),
 
     #bookings path
-    path('hotels/<int:hotel_id>/rooms/<int:room_id>/book/', booking_views.BookingApiView.as_view(), name='bookings'),
+    path('bookings/', booking_views.ListBookingsApiView.as_view(), name='bookings-list'),
+    path('bookings/<int:hotel_id>/rooms/<int:room_id>/book/', booking_views.BookingApiView.as_view(), name='bookings'),
 
 ]

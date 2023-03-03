@@ -63,6 +63,7 @@ class Room(models.Model):
     capacity = models.PositiveIntegerField(default=1, blank=True, null=True)
     check_in_date = models.DateField(blank=True, null=True)
     check_out_date = models.DateField(blank=True, null=True)
+    is_booked = models.BooleanField(default=False)
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     image = models.ImageField(upload_to=room_image_path)
 

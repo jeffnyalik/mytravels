@@ -5,4 +5,4 @@ from hotels.hotel_model import *
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
-        fields = ['id', 'room_number', 'room_type', 'price', 'hotel', 'image']
+        fields = ['id', 'room_number', 'room_type', 'price', 'is_booked', 'hotel', 'image']
