@@ -9,6 +9,10 @@ admin.site.register(Supplier, SupplierAdmin)
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ['name', 'email', 'phone_number', 'address']
 
+@admin.register(Percentage)
+class PercentageAdmin(admin.ModelAdmin):
+    list_display = ('hotel', 'value')
+
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('user', 'room', 'check_in', 'check_out', 'deposit_paid', 'paid_amount', 'balance')

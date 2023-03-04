@@ -53,7 +53,7 @@ class Percentage(models.Model):
         verbose_name_plural = "Percentages"
     
     def __str__(self) -> str:
-        return self.value
+        return str(self.value)
 
 
 class Room(models.Model):
