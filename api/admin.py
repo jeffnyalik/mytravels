@@ -15,7 +15,14 @@ class PercentageAdmin(admin.ModelAdmin):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('user', 'room', 'check_in', 'check_out', 'deposit_paid', 'paid_amount', 'balance')
+    list_display = ('user', 
+                    'room', 
+                    'check_in', 
+                    'check_out', 
+                    'deposit_paid', 
+                    'total_price', 
+                    'paid_amount', 
+                    'balance')
 
 @admin.register(RoomType)
 class RoomTypeAdmin(admin.ModelAdmin):
@@ -27,6 +34,12 @@ class HotelAdmin(admin.ModelAdmin):
 
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):
-    list_display = ('room_number', 'hotel', 'room_type', 'price', 'is_booked')
+    list_display = ('room_number',
+                    'hotel', 
+                    'room_type', 
+                    'price', 
+                    'check_in_date', 
+                    'check_out_date', 
+                    'is_booked')
 
 admin.site.register(Customer, SupplierAdmin)

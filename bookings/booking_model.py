@@ -9,6 +9,7 @@ class Booking(models.Model):
     check_out = models.DateField(blank=True, null=True, auto_now_add=True)
     deposit_paid = models.BooleanField(default=False, blank=True, null=True)
     paid_amount = models.FloatField(null=True, blank=True)
+    total_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     balance = models.FloatField(blank=True, null=True)
 
     class Meta:

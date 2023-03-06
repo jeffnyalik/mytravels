@@ -23,6 +23,7 @@ from dotenv import load_dotenv
 load_dotenv()
 from xhtml2pdf import pisa
 import random
+from datetime import date
 
 
 
@@ -70,9 +71,38 @@ class BookingApiView(generics.CreateAPIView):
             return Response({'message': 'Room does not exist in this hotel.'}, status=status.HTTP_404_NOT_FOUND)
         # if room.is_booked:
         #     return Response({'message': 'This room is already booked.'}, status=status.HTTP_400_BAD_REQUEST)
-
+        check_in = request.data.get('check_in', None)
+        check_out = request.data.get('check_out', None)
+        room.check_in_date=check_in
+        room.check_out_date=check_out
         room.is_booked = True
         room.save()
+
+        check_in = request.data.get('check_in', None)
+        check_out = request.data.get('check_out', None)
+
+        check_in = datetime.strptime(check_in, '%Y-%m-%d').date()
+        check_out = datetime.strptime(check_out, '%Y-%m-%d').date()
+
+        num_nights = (check_out - check_in).days
+        price_per_night = room.price
+        total_price = price_per_night * num_nights
+
+        print("TOTAL PRICE", total_price)
+        
+
+        
+
+        # if not check_in or not check_out:
+        #     return Response({'message': 'Check-in and check-out dates are required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # # Check if the check-in date is in the past
+        # if datetime.strptime(check_in, '%Y-%m-%d').date() < date.today():
+        #     return Response({'message': 'Check-in date cannot be in the past.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # # Check if the check-out date is after the check-in date
+        # if check_out <= check_in:
+        #     return Response({'message': 'Check-out date must be after check-in date.'}, status=status.HTTP_400_BAD_REQUEST)
     
 
         # Calculate paid amount and round off to 2 decimal places
@@ -86,10 +116,22 @@ class BookingApiView(generics.CreateAPIView):
         request.data['paid_amount'] = paid_amount
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        booking = serializer.save(user=request.user, room=room, paid_amount=paid_amount, deposit_paid=deposit_paid)
+       
+
+        booking = serializer.save(
+            user=request.user,
+            room=room,
+            check_in=check_in,
+            check_out=check_out,
+            paid_amount=paid_amount, 
+            deposit_paid=deposit_paid)
+        
 
         # Update the balance field of the booking object
         booking.balance = remaining
+        booking.check_in = check_in
+        booking.check_out = check_out
+        booking.total_price=total_price
         booking.save()
 
         ## Generate customer invoice
