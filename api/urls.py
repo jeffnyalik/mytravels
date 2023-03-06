@@ -4,9 +4,10 @@ from auths import auth_views
 from hotels import hotel_views
 from flights import flight_views
 from bookings import booking_views
+from .import views
 
 urlpatterns = [
-    # path('', views.index, name="Index page"),
+    path('', views.index, name="Index page"),
     path('vendor-register', auth_views.SupplierRegistrationView.as_view(), name='vendor-register'),
     path('vendor-login', auth_views.SupplierLoginView.as_view(), name='vendor-login'),
     path('customer-register', auth_views.CustomerRegistrationView.as_view(), name='customer-register'),
@@ -27,5 +28,6 @@ urlpatterns = [
     #bookings path
     path('bookings/', booking_views.ListBookingsApiView.as_view(), name='bookings-list'),
     path('bookings/<int:hotel_id>/rooms/<int:room_id>/book/', booking_views.BookingApiView.as_view(), name='bookings'),
+    path('customer-bookings/', booking_views.CustomerBookingView.as_view(), name='customer-bookings'),
 
 ]
