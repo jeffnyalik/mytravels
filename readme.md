@@ -76,12 +76,9 @@ On the homepage, users can search for rooms based on location and date range.
 * Select a check-in date and check-out date for a particular room.
 
 ### NOTE
-- Flight module has not been implimented since it has almost the same functionality with Hotel module.
+- Flight booking view module has not been implimented since it has almost the same functionality with Hotel module.
 - Payment intergration is something that needs to be looked into.
 - search functionality also needs to be implemented.
 
 Contributing
 Contributions are welcome for the remaining features! If you have any suggestions or would like to report a bug, please open an issue or submit a pull request.
-
-License
-This project is licensed under the MIT License. See the LICENSE file for more information.
