@@ -53,6 +53,7 @@
       <h2>Invoice</h2>
       <p>Invoice #{{ invoice.invoice_number }}</p>
       <small>Invoice Date: {{invoice.invoice_date}}</small>
+      <p>Invoice sent to {{invoice.hotel_email}}</p>
     </div>
 
     <div class="invoice-details">
@@ -91,6 +92,10 @@
             <td>${{ invoice.price }}</td>
           </tr>
           <tr>
+            <th>Total</th>
+            <td>${{ invoice.total_price }}</td>
+          </tr>
+          <tr>
             <th>Paid amount</th>
             <td>${{ invoice.amount }}</td>
           </tr>
@@ -103,7 +108,7 @@
     </div>
 
     <div class="invoice-footer">
-      <p>Thank you for choosing our hotel.</p>
+      <p>Thank you for partnering with us.</p>
     </div>
   </body>
 </html>

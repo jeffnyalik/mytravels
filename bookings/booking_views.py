@@ -69,8 +69,8 @@ class BookingApiView(generics.CreateAPIView):
             
         except Room.DoesNotExist:
             return Response({'message': 'Room does not exist in this hotel.'}, status=status.HTTP_404_NOT_FOUND)
-        # if room.is_booked:
-        #     return Response({'message': 'This room is already booked.'}, status=status.HTTP_400_BAD_REQUEST)
+        if room.is_booked:
+            return Response({'message': 'This room is already booked.'}, status=status.HTTP_400_BAD_REQUEST)
         check_in = request.data.get('check_in', None)
         check_out = request.data.get('check_out', None)
         room.check_in_date=check_in
@@ -137,16 +137,17 @@ class BookingApiView(generics.CreateAPIView):
         booking.save()
 
         ## Generate customer invoice
-        # invoice_number = 'INV-001'
         invoice_number = 'INV-MYTRAVELS-' + str(random.randint(1, 999)).zfill(3)
         invoice_date = datetime.now().strftime('%Y-%m-%d')
 
         invoice = {
             'customer': request.user,
             'invoice_number': invoice_number,
+            'hotel_email': hotel.hotel_email,
             'invoice_date': invoice_date,
             'amount': paid_amount,
             'price': booking.room.price,
+            'total_price':total_price,
             'balance': remaining,
             'check_in': booking.check_in,
             'check_out': booking.check_out,
@@ -171,7 +172,8 @@ class BookingApiView(generics.CreateAPIView):
         email_subject = 'Invoice for hotel room booking'
         email_body = 'Please find attached the invoice for your hotel room booking.'
         email_from = os.getenv('DEFAULT_FROM_EMAIL')
-        email_to = [request.user.email]
+        vendor_email = hotel.hotel_email
+        email_to = [request.user.email, vendor_email]
         text_content = strip_tags(invoice_html)
 
         # # email_message = EmailMessage(email_subject, email_body, email_from, email_to)

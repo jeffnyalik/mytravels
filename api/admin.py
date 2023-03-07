@@ -30,7 +30,7 @@ class RoomTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Hotel)
 class HotelAdmin(admin.ModelAdmin):
-    list_display = ('hotel_name', 'address', 'city', 'country')
+    list_display = ('hotel_name', 'address', 'city', 'country', 'hotel_email')
 
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):

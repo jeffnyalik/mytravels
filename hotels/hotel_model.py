@@ -28,6 +28,7 @@ class RoomType(models.Model):
 
 class Hotel(models.Model):
     hotel_name = models.CharField(max_length=100, blank=True, null=True)
+    hotel_email = models.EmailField(blank=True, null=True, unique=True)
     address = models.CharField(max_length=200, blank=True, null=True)
     city = models.CharField(max_length=50,blank=True, null=True)
     state = models.CharField(max_length=50, blank=True, null=True)

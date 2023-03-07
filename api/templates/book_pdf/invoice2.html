@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/invoice.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
 <body>
 	<div class="container mt-2">
@@ -17,15 +19,15 @@
                         <h3 class="mb-0 text-center paid_status">
                             Your Booking Status is Paid
                         </h3>
-                        <p class="text-center sent_to_status">Booking details were sent to hotelc@info.com</p>
+                        <p class="text-center sent_to_status">Booking details were sent to {{invoice.hotel_email}}</p>
                     </div>
                 </div>
                 <div class="card-header p-4">
-                    <p class="invoice_number text-center">Invoice #INV-MYTRAVELS-891</p> 
+                    <p class="invoice_number text-center">Invoice #{{ invoice.invoice_number }}</p> 
                     <div class="row">
                         <div class="col-md-4 mt-2">
                             <div class="inv_info">
-                                <span class="invoice_date">Invoice Date: 25/01/2022</span> <br>
+                                <span class="invoice_date">Invoice Date: {{invoice.invoice_date}}</span> <br>
                                 <span class="invoice_text">
                                     INVOICE
                                 </span>
@@ -34,22 +36,22 @@
                        
                         <div class="col-md-4 mt-2">
                             <div class="curr_info">
-                                <span class="invoice_currency">Currency: <strong>USD</strong></span> <br>
+                                <span class="invoice_currency">Currency: <strong>{{ invoice.currency }}</strong></span> <br>
                                 <span class="invoice_status">Status: <strong>PAID</strong></span> <br> 
                             </div>
                         </div>
                         <div class="col-md-4 mt-2">
                             <span class="customer-detail">Customer Details</span> <br>
                             <div class="detail_info">
-                                <span class="customer_name">Jeff Nyalik</span> <br>
+                                <span class="customer_name">{{ invoice.customer.name}}</span> <br>
                                 <span class="email">
-                                    jeffnyak@yahoo.com
+                                    {{ invoice.customer.email }}
                                 </span> <br>
                                 <span>
-                                    Nairobi Town
+                                    {{ invoice.customer.address }}
                                 </span><br>
                                 <span class="phone_number">
-                                    0723839923
+                                    {{ invoice.customer.phone_number }}
                                 </span> 
                             </div>
                         </div>
@@ -59,7 +61,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-6">
-                                <span class="hotel_name">Hilton Hotel</span>
+                                <span class="hotel_name">{{ invoice.hotel_name }} Hotel</span>
                             </div>
                             <div class="col-md-6">Nairobi</div>
                         </div>
@@ -128,7 +130,7 @@
                     </div>
                 </div>
                 <div class="card-footer bg-white">
-                    <p class="mb-0 text-center">Notes: Payment for Triple Room at HotelA.</p>
+                    <p class="mb-0 text-center">Notes: {{ invoice.notes }}</p>
                 </div>
             </div>
         </div>

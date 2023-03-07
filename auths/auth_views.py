@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 from custom_permissions.permissions import IsCustomer
 
-class SupplierRegistrationView(generics.ListCreateAPIView):
+class SupplierRegistrationView(generics.CreateAPIView):
     queryset = Supplier.objects.all()
     serializer_class = SupplierSerializer
 
@@ -28,7 +28,7 @@ class SupplierLoginView(APIView):
             'access': str(refresh.access_token)
         }, status=status.HTTP_200_OK)
     
-class CustomerRegistrationView(generics.ListCreateAPIView):
+class CustomerRegistrationView(generics.CreateAPIView):
     queryset = Supplier.objects.all()
     serializer_class = CustomerSerializer
 
