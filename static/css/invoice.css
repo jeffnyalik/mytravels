@@ -1,0 +1,57 @@
+.booking_status{
+    background-color: #4BB543;
+}
+
+.paid_status{
+    font-family: serif;
+    color: #fff;
+}
+.sent_to_status{
+    font-family: serif;
+    font-size: 16px;
+    color: #fff;
+}
+.customer-detail{
+    font-family: serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+.detail_info{
+    font-family: serif;
+    font-size: 16px;
+}
+.curr_info{
+    font-family: serif;
+}
+.inv_info{
+    font-family: serif;
+}
+.invoice_text{
+    font-size: 25px;
+    font-weight: bold;
+    color: gray;
+}
+.invoice_number{
+    font-size: 16px;
+    color: gray;
+    font-family: serif;
+}
+#room{
+    font-family: serif;
+    text-align: end;
+    margin-left: 350px;
+}
+
+.check_in{
+    font-family: serif;
+}
+.check_out{
+    font-family: serif;
+}
+.stay{
+    font-family: serif;
+}
+.room_name{
+    font-family: serif;
+}
+

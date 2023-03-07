@@ -106,9 +106,11 @@ class BookingApiView(generics.CreateAPIView):
     
 
         # Calculate paid amount and round off to 2 decimal places
-        paid_amount = round(room.price * Decimal(percentage.value) / Decimal('100.0'), 2)
+        # paid_amount = round(room.price * Decimal(percentage.value) / Decimal('100.0'), 2)
+        paid_amount = round(total_price * Decimal(percentage.value) / Decimal('100.0'), 2)
         paid_amount = paid_amount.quantize(Decimal('0.001'))
-        remaining = round(room.price - paid_amount, 2)
+        remaining = round(total_price - paid_amount, 2)
+        # remaining = round(room.price - paid_amount, 2)
 
         print(remaining)
 
